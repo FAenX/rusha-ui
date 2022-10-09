@@ -4,7 +4,11 @@ import './App.css';
 import ThemeProvider from 'react-bootstrap/ThemeProvider';
 import Home from './home/component';
 import Projects from './projects';
+import CreateProject from './create-project';
+import Deploy from './deploy';
+import { ReactDeployment } from './deploy';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import sideNavigationLinks from './navigation/navigation-links';
 
 function App() {
   return (
@@ -14,8 +18,11 @@ function App() {
     >
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/projects" element={<Projects />} />
+          <Route path={sideNavigationLinks().home.link} element={<Home />} />
+          <Route path={sideNavigationLinks().projects.link} element={<Projects />} />
+          <Route path={sideNavigationLinks().createNewProject.link} element={<CreateProject />} />
+          <Route path={sideNavigationLinks().deploy.link} element={<Deploy />} />
+          <Route path={sideNavigationLinks().reactDeployment.link} element={<ReactDeployment />} />
         </Routes>
       </BrowserRouter>
 

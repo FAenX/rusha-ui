@@ -8,7 +8,7 @@ import LayoutInterface from './layout-interface';
 
 function Component(props: LayoutInterface) {
   return (
-      <Container fluid className='bordervh-100'>
+      <Container fluid className='border vh-100'>
         <Stack direction='horizontal'>         
           <SideNavigation 
           title={sideNavigationProps.title} 
