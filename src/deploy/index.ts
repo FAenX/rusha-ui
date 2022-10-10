@@ -1,5 +1,5 @@
 import Component from "./component";
-import ReactDeployment from "./react-deployment";
+import Deployment from "./deployment";
 
 export default Component;
-export { ReactDeployment };
+export { Deployment };

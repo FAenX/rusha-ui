@@ -6,27 +6,11 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import dataFunctions from '../data';
 import {useLocation} from 'react-router-dom';
-import SuccessfulDeployment from "./successful-deployment";
 
-interface Props {
-    response: string[]
-}
-
-const ReactSuccessFulDeployment = (props: Props) => {
-    return (
-        <div className="content border d-flex flex-column">
-          <div>{props.response[0][1]}</div>
-            <div>{props.response[0][2]}</div>
-
-            
-        </div>
-    );
-}
-
-const ReactDeployment = () => {
+const NodeDeployment = () => {
 
     const [projectName, setProjectName] = React.useState("");
-    const [deployData, setDeployData] = React.useState([]);
+    const [deployData, setDeployData] = React.useState({});
     const [done, setDone] = React.useState(false);
 
 
@@ -65,7 +49,7 @@ const ReactDeployment = () => {
 
             {!done &&<Button onClick={clickHandler} className="w-25 m-2 align-self-end" variant="success" size='sm'>Submit</Button>}
             {done && <div>
-                <SuccessfulDeployment child={<ReactSuccessFulDeployment response={deployData}/>}/>
+                {JSON.stringify(deployData)}
                 </div>}
         
         </div>
@@ -73,4 +57,4 @@ const ReactDeployment = () => {
 }
 
 
-export default ReactDeployment;
+export default NodeDeployment;

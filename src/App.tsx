@@ -6,7 +6,7 @@ import Home from './home/component';
 import Projects from './projects';
 import CreateProject from './create-project';
 import Deploy from './deploy';
-import { ReactDeployment } from './deploy';
+import { Deployment } from './deploy';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import sideNavigationLinks from './navigation/navigation-links';
 
@@ -22,7 +22,7 @@ function App() {
           <Route path={sideNavigationLinks().projects.link} element={<Projects />} />
           <Route path={sideNavigationLinks().createNewProject.link} element={<CreateProject />} />
           <Route path={sideNavigationLinks().deploy.link} element={<Deploy />} />
-          <Route path={sideNavigationLinks().reactDeployment.link} element={<ReactDeployment />} />
+          <Route path={sideNavigationLinks().deployment.link} element={<Deployment />} />
         </Routes>
       </BrowserRouter>
 

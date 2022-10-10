@@ -79,9 +79,9 @@ const Deploy = (props: SupportedAppListInterface) => {
 const Component = () => {
     return (
         <Layout child={<Deploy children={[
-        <SupportedApp name='React' title='React' link={links().reactDeployment.link}/>,
-        <SupportedApp name='Angular' title='Angular' link={links().reactDeployment.link}/>,
-        <SupportedApp name='Node Express' title='Node Express' link={links().reactDeployment.link}/>
+        <SupportedApp name='React' title='React' link={`${links().deployment.link.split(':')[0]}react`}/>,
+        <SupportedApp name='Angular' title='Angular' link={`${links().deployment.link.split(':')[0]}angular`}/>,
+        <SupportedApp name='Node Express' title='Node Express' link={`${links().deployment.link.split(':')[0]}node-express`}/>
     ]}/>} />
         
     );
