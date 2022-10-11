@@ -46,11 +46,11 @@ const Component = () => {
                             <p className="lead">
                                 {project.project_name}
                             </p>
-                            <p className="">
-                                {project.local_git_repo}
+                            <p className="text-muted">
+                                git repo: {project.local_git_repo}
                             </p>
-                            <p className="">
-                                {project.created_at}
+                            <p className="text-muted">
+                                date created: {project.created_at}
                             </p>
                         </div>
 
