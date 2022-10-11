@@ -2,7 +2,7 @@ import React from "react";
 import Layout from "../layout/component";
 import links from '../navigation/navigation-links';
 
-import { Card } from "react-bootstrap";
+import { Button, Card } from "react-bootstrap";
 
 interface SupportedAppInterface {
     /**
@@ -37,7 +37,7 @@ interface SupportedAppInterface {
 
 const SupportedApp = (props: SupportedAppInterface) => {
     return (
-        <a href={props.link} className=" m-2 w-25 d-flex h-25 justify-content-center">
+        <Button variant="outline" href={props.link} className=" m-2 w-25 d-flex h-25 justify-content-center">
         <Card className="w-100">
             <Card.Body className="w-100 d-flex flex-column justify-content-center align-items-center">
                 <Card.Title>{props.title}</Card.Title>
@@ -46,7 +46,7 @@ const SupportedApp = (props: SupportedAppInterface) => {
                 </Card.Text>
             </Card.Body>
         </Card>
-        </a>
+        </Button>
 
     );
 }

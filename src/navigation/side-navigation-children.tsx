@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "react-bootstrap";
 import links from "./navigation-links";
 
 
@@ -13,14 +14,14 @@ interface SideNavigationItemInterface {
 // create side navigation clickable items
 const SideNavigationItem = (props: SideNavigationItemInterface ) => {
     return (
-        <a id={props.id} href={props.link} className="border d-flex flex-row m-2 p-2">
+        <Button variant="outline" id={props.id} href={props.link} className="border d-flex flex-row m-2 p-2">
             <p className="border m-2">
                 {props.icon}
             </p>
             <p className="border m-2">
                 {props.title}
             </p>
-        </a>
+        </Button>
     );
 }
 

@@ -6,11 +6,13 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import {deploy} from '../data';
 import {useLocation} from 'react-router-dom';
+import { SuccessfulDeployment } from "./successful-deployment";
+import { CreateProjectResponseInterface } from "../types";
 
 const NodeDeployment = () => {
 
     const [projectName, setProjectName] = React.useState("");
-    const [deployData, setDeployData] = React.useState({});
+    const [responseData, setResponseData] = React.useState<CreateProjectResponseInterface>();
     const [done, setDone] = React.useState(false);
 
 
@@ -22,7 +24,7 @@ const NodeDeployment = () => {
                 app: "react"
             }, path: "deploy/"});
             console.log(data);
-            setDeployData(data);
+            setResponseData(data);
             setDone(true);
         } catch (error) {
             console.log(error);
@@ -48,9 +50,16 @@ const NodeDeployment = () => {
             </Form.Text>} 
 
             {!done &&<Button onClick={clickHandler} className="w-25 m-2 align-self-end" variant="success" size='sm'>Submit</Button>}
-            {done && <div>
-                {JSON.stringify(deployData)}
-                </div>}
+            {done && 
+
+                <SuccessfulDeployment                    
+                id={responseData?.id} 
+                project_name={responseData?.project_name} 
+                local_git_repo={responseData?.local_git_repo}
+                created_at={responseData?.created_at}                    
+                />
+                
+                }
         
         </div>
     );

@@ -6,9 +6,32 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import {deploy} from '../data';
 import {useLocation} from 'react-router-dom';
+import {CreateProjectResponseInterface} from '../types'
+
+const SuccessFulDeploymentComponent = (props?: CreateProjectResponseInterface) => {
+    // projectInfo state
+    const [projectInfo, setProjectInfo] = React.useState<CreateProjectResponseInterface>({});
+
+    useEffect(() => {
+        console.log(props);
+        if (props) {
+            setProjectInfo(props);
+        }
+    }, [props]);
+    return (
+        <div className="content border d-flex flex-column p-2">           
+            <p className="h4">{projectInfo?.project_name}</p>
+            <p className="text-muted">Git repo: {projectInfo?.local_git_repo}</p>
+            <p className="text-muted">Created date: {projectInfo?.created_at}</p>           
+        </div>
+    );
+}
 
 interface Props {
-    child: JSX.Element;
+    id?: number;
+    project_name?: string;
+    local_git_repo?: string;
+    created_at?: string;
 }
 
 const SuccessfulDeployment = (props: Props) => {
@@ -28,10 +51,10 @@ const SuccessfulDeployment = (props: Props) => {
                    
                 </div>
             </div>
-           {props.child}
+           <SuccessFulDeploymentComponent {...props} />
         </div>
     );
 }
 
 
-export default SuccessfulDeployment;
+export  {SuccessfulDeployment, SuccessFulDeploymentComponent};
