@@ -8,15 +8,15 @@ import LayoutInterface from './layout-interface';
 
 function Component(props: LayoutInterface) {
   return (
-      <Container fluid className='border vh-100'>
-        <Stack direction='horizontal'>         
+      
+       <div className='border d-flex'>  
           <SideNavigation 
           title={sideNavigationProps.title} 
           children={sideNavigationProps.children} 
           />         
           {props.child}
-        </Stack>
-      </Container>
+        </div>
+     
       
   );
 }

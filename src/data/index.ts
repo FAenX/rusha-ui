@@ -1,3 +1,5 @@
-import deployFunctions from './deploy';
+import {deploy} from './deploy';
+import {projectList} from './applications';
 
-export default deployFunctions;
+
+export { projectList, deploy };

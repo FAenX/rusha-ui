@@ -37,9 +37,9 @@ interface SupportedAppInterface {
 
 const SupportedApp = (props: SupportedAppInterface) => {
     return (
-        <a href={props.link}>
-        <Card className="m-2">
-            <Card.Body>
+        <a href={props.link} className=" m-2 w-25 d-flex h-25 justify-content-center">
+        <Card className="w-100">
+            <Card.Body className="w-100 d-flex flex-column justify-content-center align-items-center">
                 <Card.Title>{props.title}</Card.Title>
                 <Card.Text>
                     {props.name}
@@ -68,7 +68,7 @@ interface SupportedAppListInterface {
 
 const Deploy = (props: SupportedAppListInterface) => {
     return (
-        <div className="w-100 d-flex justify-content-center border h-100 align-self-start m-5">
+        <div className="w-100 d-flex justify-content-start border vh-100 align-self-start m-5 p-5">
             {props.children }
         </div>
     )

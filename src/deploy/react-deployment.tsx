@@ -4,21 +4,28 @@ import Layout from "../layout/component";
 import { Card } from "react-bootstrap";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import dataFunctions from '../data';
+import {deploy} from '../data';
 import {useLocation} from 'react-router-dom';
 import SuccessfulDeployment from "./successful-deployment";
+import {CreateProjectResponseInterface} from '../types'
 
-interface Props {
-    response: string[]
-}
+  
 
-const ReactSuccessFulDeployment = (props: Props) => {
+const ReactSuccessFulDeployment = (props?: CreateProjectResponseInterface) => {
+    // projectInfo state
+    const [projectInfo, setProjectInfo] = React.useState<CreateProjectResponseInterface>({});
+
+    useEffect(() => {
+        console.log(props);
+        if (props) {
+            setProjectInfo(props);
+        }
+    }, [props]);
     return (
-        <div className="content border d-flex flex-column">
-          <div>{props.response[0][1]}</div>
-            <div>{props.response[0][2]}</div>
-
-            
+        <div className="content border d-flex flex-column p-2">           
+            <p className="h4">{projectInfo?.project_name}</p>
+            <p className="text-muted">Git repo: {projectInfo?.local_git_repo}</p>
+            <p className="text-muted">Created date: {projectInfo?.created_at}</p>           
         </div>
     );
 }
@@ -26,19 +33,19 @@ const ReactSuccessFulDeployment = (props: Props) => {
 const ReactDeployment = () => {
 
     const [projectName, setProjectName] = React.useState("");
-    const [deployData, setDeployData] = React.useState([]);
+    const [responseData, setResponseData] = React.useState<CreateProjectResponseInterface>();
     const [done, setDone] = React.useState(false);
 
 
     const clickHandler = async () => {
         console.log(projectName);
         try{
-            const data = await dataFunctions.deploy({payload: {
+            const data = await deploy({payload: {
                 projectName,
                 app: "react"
             }, path: "deploy/"});
             console.log(data);
-            setDeployData(data);
+            setResponseData(data);
             setDone(true);
         } catch (error) {
             console.log(error);
@@ -65,7 +72,14 @@ const ReactDeployment = () => {
 
             {!done &&<Button onClick={clickHandler} className="w-25 m-2 align-self-end" variant="success" size='sm'>Submit</Button>}
             {done && <div>
-                <SuccessfulDeployment child={<ReactSuccessFulDeployment response={deployData}/>}/>
+                <SuccessfulDeployment child={
+                    <ReactSuccessFulDeployment 
+                        id={responseData?.id} 
+                        project_name={responseData?.project_name} 
+                        local_git_repo={responseData?.local_git_repo}
+                        created_at={responseData?.created_at}
+                    />
+                }/>
                 </div>}
         
         </div>

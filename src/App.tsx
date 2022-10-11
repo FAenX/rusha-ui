@@ -3,7 +3,7 @@ import React from 'react';
 import './App.css';
 import ThemeProvider from 'react-bootstrap/ThemeProvider';
 import Home from './home/component';
-import Projects from './projects';
+import Applications from './applications';
 import CreateProject from './create-project';
 import Deploy from './deploy';
 import { Deployment } from './deploy';
@@ -19,7 +19,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path={sideNavigationLinks().home.link} element={<Home />} />
-          <Route path={sideNavigationLinks().projects.link} element={<Projects />} />
+          <Route path={sideNavigationLinks().applications.link} element={<Applications />} />
           <Route path={sideNavigationLinks().createNewProject.link} element={<CreateProject />} />
           <Route path={sideNavigationLinks().deploy.link} element={<Deploy />} />
           <Route path={sideNavigationLinks().deployment.link} element={<Deployment />} />

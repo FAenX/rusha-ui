@@ -7,21 +7,14 @@ interface deployArgs {
     path: string;
 }
 
-let reqInstance = axios.create({
-    headers: {
-      Authorization : `Bearer ${localStorage.getItem("access_token")}`,
-      
-      }
-    });
-
 
 // call deploy backend
-const deploy = async (args: deployArgs) => {
+const deploy = async (args: deployArgs)=> {
     const { payload, path } = args;
     const { data } = await axios.post(`${apiUrl}/${path}`,payload);
     return data;
 };
 
-export default {
+export  {
     deploy
 };

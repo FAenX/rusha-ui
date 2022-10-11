@@ -4,7 +4,7 @@ import Layout from "../layout/component";
 import { Card } from "react-bootstrap";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import dataFunctions from '../data';
+import {deploy} from '../data';
 import {useLocation} from 'react-router-dom';
 
 const NodeDeployment = () => {
@@ -17,7 +17,7 @@ const NodeDeployment = () => {
     const clickHandler = async () => {
         console.log(projectName);
         try{
-            const data = await dataFunctions.deploy({payload: {
+            const data = await deploy({payload: {
                 projectName,
                 app: "react"
             }, path: "deploy/"});
