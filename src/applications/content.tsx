@@ -1,25 +1,38 @@
 import React, {useEffect} from "react";
-import {projectList} from '../data';
+import {applicationList} from '../data';
 import {CreateProjectResponseInterface} from '../types'
 import Button from 'react-bootstrap/Button';
+import { DismissibleAlert } from "../common-components";
+
 
 
 
 
 
 const Component = () => {
-    // projects state
-    const [projects, setProjects] = React.useState<CreateProjectResponseInterface[]>();
+    // applications state
+    const [applications, setApplications] = React.useState<CreateProjectResponseInterface[]>();
+    // error state
+    const [error, setError] = React.useState({error: false, message: ""});
 
 
   
     useEffect(() => {
         (
             async () => {
-                // get projects
-                const getProjects = await projectList();
-                console.log(getProjects);
-                setProjects(getProjects);
+                // get applications
+                try{
+                    const getApplications = await applicationList();
+                    console.log(getApplications);
+                    console.log(typeof getApplications);
+                   
+                    setApplications(getApplications);
+                    
+                }catch (error) {
+                    console.log(error);
+                    setError({error: true, message: "Something went wrong"});
+                }
+               
             }
         
         )()
@@ -27,7 +40,7 @@ const Component = () => {
     }, []);
     return (
         <div className="content border d-flex flex-column w-100 justify-content-start m-5 p-5">
-
+            <DismissibleAlert show={error.error} onClose={()=>setError({error: false, message: ""})} message={error.message}/>
             <div className="border m-2 p-2 d-flex">
                 <i className="bi bi-view-stacked border d-flex align-items-center p-2" style={{fontSize: 100}}></i>
                 <div className="m-2 p-2 border d-flex justify-content-start flex-column">
@@ -38,19 +51,19 @@ const Component = () => {
 
             <div className="border m-2 p-2 d-flex flex-column">
 
-                {/* map projects */}
-                {projects?.map((project, index) => (
-                    <div className="border d-flex  m-2 p-2" id={`project-${project.id}}`}>
+                {/* map applications */}
+                {applications?.map((application) => (
+                    <div className="border d-flex  m-2 p-2" id={`application-${application.id}}`}>
                         <i className="bi bi-app border d-flex  p-2" style={{fontSize: 50}}></i>
                         <div className="m-2 p-2 border d-flex justify-content-start flex-column lh-1 flex-grow-1">
                             <p className="lead">
-                                {project.project_name}
+                                {application.application_name}
                             </p>
                             <p className="text-muted">
-                                git repo: {project.local_git_repo}
+                                git repo: {application.local_git_repo}
                             </p>
                             <p className="text-muted">
-                                date created: {project.created_at}
+                                date created: {application.requestedAt}
                             </p>
                         </div>
 

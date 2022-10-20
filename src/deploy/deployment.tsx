@@ -25,7 +25,7 @@ const Component = () => {
         if (location.pathname === "/deploy/react") {
             setChild(<ReactDeployment/>);
         } else if (location.pathname === "/deploy/node-express") {
-            setChild(<NodeDeployment/>);
+            // setChild(<NodeDeployment/>);
         }else {
             setChild(<div>Not found</div>);
         }

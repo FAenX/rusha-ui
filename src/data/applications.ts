@@ -1,15 +1,16 @@
 import axios from 'axios';
 
-const apiUrl = 'http://localhost:5000'
+const apiUrl = 'http://localhost:8000/app-api/v1'
 
 
 
 // call deploy backend
-const projectList = async () => {  
-    const { data } = await axios.get(`${apiUrl}/projects`);
+const applicationList = async () => {  
+    const { data } = await axios.get(`${apiUrl}/applications/`);
+    console.log(data)
     return data;
 };
 
 export  {
-    projectList
+    applicationList
 };

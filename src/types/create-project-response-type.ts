@@ -1,10 +1,13 @@
 interface CreateProjectResponseInterface {
     id?: number, 
-    project_name?: string, 
+    application_name?: string, 
     local_git_repo?: string, 
-    created_at?: string, 
-    updated_at?: string 
+    requestedAt?: string, 
+    gitCreatedAt?: string,
+    nginxConfCreatedAt?: string,
+    applicationUpdatedAt?: string,
+    error?: boolean | false
+    message?: string
 
 }
-
 export default CreateProjectResponseInterface;

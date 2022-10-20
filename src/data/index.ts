@@ -1,5 +1,5 @@
 import {deploy} from './deploy';
-import {projectList} from './applications';
+import {applicationList} from './applications';
 
 
-export { projectList, deploy };
+export { applicationList, deploy };

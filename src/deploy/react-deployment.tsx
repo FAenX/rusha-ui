@@ -9,30 +9,33 @@ import {useLocation} from 'react-router-dom';
 import {SuccessfulDeployment} from "./successful-deployment";
 import {CreateProjectResponseInterface} from '../types'
 import {SuccessFulDeploymentComponent} from './successful-deployment'
+import { DismissibleAlert } from "../common-components";
 
-  
 
 
 
 const ReactDeployment = () => {
 
-    const [projectName, setProjectName] = React.useState("");
+    const [projectName, setProjectName] = React.useState<string>('');
     const [responseData, setResponseData] = React.useState<CreateProjectResponseInterface>();
+    const [error, setError] = React.useState({error: false, message: ""});
     const [done, setDone] = React.useState(false);
-
 
     const clickHandler = async () => {
         console.log(projectName);
         try{
             const data = await deploy({payload: {
-                projectName,
-                app: "react"
-            }, path: "deploy/"});
+                 applicationName: projectName,
+                framework: "react"
+            }});
             console.log(data);
             setResponseData(data);
             setDone(true);
-        } catch (error) {
-            console.log(error);
+
+           
+        } catch (error: any) {
+            console.log(error.response.data);
+            setError({error: true, message: `Error: ${JSON.stringify(error.response.data)}`});
         }
     }
 
@@ -42,6 +45,7 @@ const ReactDeployment = () => {
     }
     return (
         <div className="content border d-flex flex-column  w-100  justify-content-center align-self-start m-5 p-5">
+            <DismissibleAlert show={error.error} onClose={()=>setError({error: false, message: ""})} message={error.message}/>
            {!done && <Form.Label>Project name</Form.Label>}
            {!done && <Form.Control
                 type="text"
@@ -58,9 +62,10 @@ const ReactDeployment = () => {
             {done && <div>
                 <SuccessfulDeployment                    
                     id={responseData?.id} 
-                    project_name={responseData?.project_name} 
+                    application_name={responseData?.application_name} 
                     local_git_repo={responseData?.local_git_repo}
-                    created_at={responseData?.created_at}                    
+                    requestedAt={responseData?.requestedAt}  
+                    applicationUpdatedAt={responseData?.applicationUpdatedAt}                  
                 />
                 </div>}
         

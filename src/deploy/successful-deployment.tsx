@@ -20,21 +20,15 @@ const SuccessFulDeploymentComponent = (props?: CreateProjectResponseInterface) =
     }, [props]);
     return (
         <div className="content border d-flex flex-column p-2">           
-            <p className="h4">{projectInfo?.project_name}</p>
+            <p className="h4">{projectInfo?.application_name}</p>
             <p className="text-muted">Git repo: {projectInfo?.local_git_repo}</p>
-            <p className="text-muted">Created date: {projectInfo?.created_at}</p>           
+            <p className="text-muted">Created date: {projectInfo?.requestedAt}</p>           
         </div>
     );
 }
 
-interface Props {
-    id?: number;
-    project_name?: string;
-    local_git_repo?: string;
-    created_at?: string;
-}
 
-const SuccessfulDeployment = (props: Props) => {
+const SuccessfulDeployment = (props: CreateProjectResponseInterface) => {
 
 
     return (
