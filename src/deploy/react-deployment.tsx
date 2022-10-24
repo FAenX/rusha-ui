@@ -1,14 +1,10 @@
-import React, { useEffect } from "react";
-import Layout from "../layout/component";
+import React from "react";
 
-import { Card } from "react-bootstrap";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import {deploy} from '../data';
-import {useLocation} from 'react-router-dom';
 import {SuccessfulDeployment} from "./successful-deployment";
 import {CreateProjectResponseInterface} from '../types'
-import {SuccessFulDeploymentComponent} from './successful-deployment'
 import { DismissibleAlert } from "../common-components";
 
 
@@ -41,7 +37,7 @@ const ReactDeployment = () => {
 
     const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         console.log(e.target.value);
-        setProjectName(e.target.value);
+        setProjectName(e.target.value.trim().replace(/\s+/g, '-').toLowerCase());
     }
     return (
         <div className="content border d-flex flex-column  w-100  justify-content-center align-self-start m-5 p-5">

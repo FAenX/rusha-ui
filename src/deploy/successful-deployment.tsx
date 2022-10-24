@@ -1,11 +1,5 @@
 import React, { useEffect } from "react";
-import Layout from "../layout/component";
 
-import { Card } from "react-bootstrap";
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import {deploy} from '../data';
-import {useLocation} from 'react-router-dom';
 import {CreateProjectResponseInterface} from '../types'
 
 const SuccessFulDeploymentComponent = (props?: CreateProjectResponseInterface) => {
