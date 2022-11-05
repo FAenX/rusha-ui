@@ -1,0 +1,13 @@
+version: '3'
+services:
+  rusha-ui:
+    image: node:16
+    container_name: rusha-ui
+    restart: always
+    ports:
+      - 3000:3000
+    volumes:
+      - ./:/app
+    working_dir: /app
+    stdin_open: true
+    command: bash -c "cd /app && npm install && npm start"
